@@ -1,0 +1,7 @@
+﻿services:
+  leaguebot:
+    image: leaguebot
+    build:
+      context: .
+      dockerfile: LeagueBot/Dockerfile
+
