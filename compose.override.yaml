@@ -1,0 +1,13 @@
+﻿services:
+   
+# the discord bot docker container
+  leaguebot:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+    command:
+      - dotnet watch --project src/Host/Host.csproj run
+    
+# added cached data
+volumes:
+  db_data:
+
