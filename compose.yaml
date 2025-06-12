@@ -1,7 +1,11 @@
 ﻿services:
   leaguebot:
     image: leaguebot
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
     build:
       context: .
       dockerfile: LeagueBot/Dockerfile
+  
+    
 
