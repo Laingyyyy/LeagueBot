@@ -1,21 +1,27 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using DSharpPlus;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Services;
 
 public class HostedService : IHostedService
 {
-    public HostedService( )
+    private readonly DiscordClient _client;
+    
+    public HostedService
+        (DiscordClient client)
     {
+        _client = client;
     }
     
     public async Task StartAsync(CancellationToken cancellationToken)
     {
+        await _client.ConnectAsync().ConfigureAwait(false);
         await Task.Delay(-1, cancellationToken).ConfigureAwait(false);
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
+    public async Task StopAsync(CancellationToken cancellationToken)
     {
-        return Task.CompletedTask;
+        await _client.DisconnectAsync().ConfigureAwait(false);
     }
 }

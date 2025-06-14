@@ -13,6 +13,8 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        DotNetEnv.Env.Load();
+        
         var builder = Host.CreateApplicationBuilder(args);
         
         // configuration
@@ -25,7 +27,8 @@ class Program
         // configures logging
         builder.Logging
             .AddConsole()
-            .AddDebug();
+            .AddDebug()
+            .AddFilter("", LogLevel.Debug);
         
         // Configure services
         builder.Services

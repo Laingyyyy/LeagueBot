@@ -1,4 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using DSharpPlus;
+using DSharpPlus.Interactivity;
+using DSharpPlus.Interactivity.Extensions;
+using DSharpPlus.SlashCommands;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Discord.Services.Extensions;
 
@@ -12,6 +18,34 @@ public static class DiscordServiceCollectionExtension
     public static IServiceCollection AddDiscord(this IServiceCollection services)
     {
         // Add discord services here
+
+        services.AddSingleton<DiscordClient>((provider =>
+        {
+            var appConfig = provider.GetRequiredService<IConfiguration>();
+            var token = appConfig["DISCORD_TOKEN"];
+            
+            // registers base discord config and client
+            var config = new DiscordConfiguration()
+            {
+                AutoReconnect = true,
+                LoggerFactory = provider.GetRequiredService<ILoggerFactory>(),
+                Token = token,
+                TokenType = TokenType.Bot,
+                Intents = DiscordIntents.All,
+                MinimumLogLevel = LogLevel.Debug,
+            };
+
+            var client = new DiscordClient(config);
+
+            // registers Discord Client Extensions
+            client.UseInteractivity(new InteractivityConfiguration()
+            {
+                Timeout = TimeSpan.FromMinutes(5)
+            });
+            client.UseSlashCommands(new SlashCommandsConfiguration());
+
+            return client;
+        }));
         
         return services;
     }
