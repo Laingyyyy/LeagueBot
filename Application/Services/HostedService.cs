@@ -17,6 +17,9 @@ public class HostedService : IHostedService
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         await _client.ConnectAsync().ConfigureAwait(false);
+        
+        // register events
+        
         await Task.Delay(-1, cancellationToken).ConfigureAwait(false);
     }
 

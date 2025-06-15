@@ -23,8 +23,8 @@
   Host:
     build:
       context: .
-      dockerfile: Host/Dockerfile
-    image: host:lastest
+      dockerfile: Application/Dockerfile
+    image: application:lastest
     depends_on:
       database:
         condition: service_healthy

@@ -1,4 +1,7 @@
-﻿using DSharpPlus;
+﻿using Discord.SlashCommands.AdminCommands;
+using Discord.SlashCommands.PlayerCommands;
+using Discord.SlashCommands.UserCommands;
+using DSharpPlus;
 using DSharpPlus.Interactivity;
 using DSharpPlus.Interactivity.Extensions;
 using DSharpPlus.SlashCommands;
@@ -17,9 +20,7 @@ public static class DiscordServiceCollectionExtension
     /// <returns>The IServiceCollection with the added Discord services.</returns>
     public static IServiceCollection AddDiscord(this IServiceCollection services)
     {
-        // Add discord services here
-
-        services.AddSingleton<DiscordClient>((provider =>
+        services.AddSingleton<DiscordClient>(provider =>
         {
             var appConfig = provider.GetRequiredService<IConfiguration>();
             var token = appConfig["DISCORD_TOKEN"];
@@ -42,10 +43,15 @@ public static class DiscordServiceCollectionExtension
             {
                 Timeout = TimeSpan.FromMinutes(5)
             });
-            client.UseSlashCommands(new SlashCommandsConfiguration());
+            var slashCommandsExtension = client.UseSlashCommands(new SlashCommandsConfiguration());
+            
+            // registering SlashCommands
+            slashCommandsExtension.RegisterCommands<AdminCommands>();
+            slashCommandsExtension.RegisterCommands<PlayerCommands>();
+            slashCommandsExtension.RegisterCommands<UserCommands>();
 
             return client;
-        }));
+        });
         
         return services;
     }
