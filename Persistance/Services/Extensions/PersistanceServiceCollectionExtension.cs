@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Persistance.Database;
+using Persistance.Database.Interceptors;
 
 namespace Persistance.Services.Extensions;
 
@@ -20,9 +21,10 @@ public static class PersistanceServiceCollectionExtension
         services.AddDbContextPool<LeagueDbContext>(opt =>
         {
             opt.UseNpgsql(
-                Environment.GetEnvironmentVariable("CONNECTION_STRING"),
-                b => b
-                    .SetPostgresVersion(13, 0));
+                    Environment.GetEnvironmentVariable("CONNECTION_STRING"),
+                    b => b
+                        .SetPostgresVersion(13, 0))
+                .AddInterceptors(new SaveChangesInterceptor());
         });
 
         // adding localization services
