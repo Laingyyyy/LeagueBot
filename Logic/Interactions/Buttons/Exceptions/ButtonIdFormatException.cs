@@ -2,9 +2,11 @@
 
 public class ButtonIdFormatException : ComponentInteractionException
 {
+    public string ButtonId { get; private set; }
+    
     public ButtonIdFormatException(string buttonId, string message)
     : base("", message)
     {
-        throw new NotImplementedException();
+        ButtonId = buttonId;
     }
 }
