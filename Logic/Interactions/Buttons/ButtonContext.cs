@@ -1,4 +1,4 @@
-﻿namespace Logic.Interactions;
+﻿namespace Logic.Interactions.Buttons;
 
 public class ButtonContext
 {

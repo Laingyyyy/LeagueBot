@@ -1,9 +1,10 @@
 ﻿using System.Text.RegularExpressions;
-using Logic.Interactions.Exceptions;
+using Logic.Interactions.Buttons;
+using Logic.Interactions.Buttons.Exceptions;
 
 namespace Logic.Interactions;
 
-public class ButtonIdParser
+public class IdParser
 {
     public static async Task<ButtonContext> Serialize(string buttonId, Dictionary<string, string> paramsDic, ulong userId, ulong? guildId)
     {
