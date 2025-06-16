@@ -4,8 +4,7 @@ public abstract class ComponentInteractionException : Exception
 {
     string ResourceKey { get; }
 
-    protected ComponentInteractionException(string resourceKey, string message)
-        : base(message)
+    protected ComponentInteractionException(string resourceKey)
     {
         ResourceKey = resourceKey;
     }

@@ -4,8 +4,8 @@ public class ButtonIdTooLongException : ComponentInteractionException
 {
     public int ButtonIdLength { get; private set; }
     
-    public ButtonIdTooLongException(int buttonIdLength, string message)
-    : base("", message)
+    public ButtonIdTooLongException(int buttonIdLength)
+    : base("")
     {
         this.ButtonIdLength = buttonIdLength;
     }
