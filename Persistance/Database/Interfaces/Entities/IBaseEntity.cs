@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Persistance.Database.Interfaces;
+﻿namespace Persistance.Database.Interfaces.Entities;
 
 public interface IBaseEntity
 {

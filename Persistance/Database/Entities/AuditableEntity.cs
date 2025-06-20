@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Persistance.Database.Interfaces;
+using Persistance.Database.Interfaces.Entities;
 
 namespace Persistance.Database.Entities;
 
