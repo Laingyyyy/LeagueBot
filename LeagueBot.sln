@@ -1,11 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueBot", "LeagueBot\LeagueBot.csproj", "{025DF879-7168-482C-8D63-D015E5DCF87F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{025DF879-7168-482C-8D63-D015E5DCF87F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBE92300-5144-4431-BC78-583064B897D6}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		.env = .env
+		compose.override.yaml = compose.override.yaml
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{43AC6E03-B2E1-4A89-9DFD-589E274D472D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord", "Discord\Discord.csproj", "{FCBD765C-E12C-4FD9-BA23-46C85DA03419}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{C87C886F-D40B-45D8-84CA-10AAF789223D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Persistance\Persistance.csproj", "{27EEC3AF-6E8E-475E-9248-C6D03C0A451D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,5 +27,23 @@ Global
 		{025DF879-7168-482C-8D63-D015E5DCF87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{025DF879-7168-482C-8D63-D015E5DCF87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{025DF879-7168-482C-8D63-D015E5DCF87F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCBD765C-E12C-4FD9-BA23-46C85DA03419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBD765C-E12C-4FD9-BA23-46C85DA03419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBD765C-E12C-4FD9-BA23-46C85DA03419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBD765C-E12C-4FD9-BA23-46C85DA03419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C87C886F-D40B-45D8-84CA-10AAF789223D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87C886F-D40B-45D8-84CA-10AAF789223D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87C886F-D40B-45D8-84CA-10AAF789223D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87C886F-D40B-45D8-84CA-10AAF789223D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27EEC3AF-6E8E-475E-9248-C6D03C0A451D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27EEC3AF-6E8E-475E-9248-C6D03C0A451D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27EEC3AF-6E8E-475E-9248-C6D03C0A451D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27EEC3AF-6E8E-475E-9248-C6D03C0A451D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{025DF879-7168-482C-8D63-D015E5DCF87F} = {43AC6E03-B2E1-4A89-9DFD-589E274D472D}
+		{FCBD765C-E12C-4FD9-BA23-46C85DA03419} = {43AC6E03-B2E1-4A89-9DFD-589E274D472D}
+		{C87C886F-D40B-45D8-84CA-10AAF789223D} = {43AC6E03-B2E1-4A89-9DFD-589E274D472D}
+		{27EEC3AF-6E8E-475E-9248-C6D03C0A451D} = {43AC6E03-B2E1-4A89-9DFD-589E274D472D}
 	EndGlobalSection
 EndGlobal

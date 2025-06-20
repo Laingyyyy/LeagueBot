@@ -1,7 +1,43 @@
 ﻿services:
-  leaguebot:
-    image: leaguebot
+
+# database docker container
+  database:
+    image: postgres:15
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DB__CONNECTIONSTRING=${CONNECTION_STRING}
+      - DOTNET_ENVIRONMENT=${DOTNET_ENVIRONMENT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+      
+# the discord bot docker container
+  Host:
     build:
       context: .
-      dockerfile: LeagueBot/Dockerfile
+      dockerfile: Application/Dockerfile
+    image: application:lastest
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - DB__CONNECTIONSTRING=${CONNECTION_STRING}
+      - DOTNET_ENVIRONMENT=${DOTNET_ENVIRONMENT}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    restart: unless-stopped
+    
+# added cached data
+volumes:
+  db_data:
 
