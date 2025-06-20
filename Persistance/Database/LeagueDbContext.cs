@@ -6,6 +6,8 @@ namespace Persistance.Database;
 
 public class LeagueDbContext : DbContext
 {
+    public DbSet<GuildEntity> Guilds { get; set; }
+    
     public LeagueDbContext(DbContextOptions<LeagueDbContext> options) : base(options)
     {
         

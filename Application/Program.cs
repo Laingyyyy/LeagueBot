@@ -31,7 +31,7 @@ class Program
             .AddDebug()
             .AddFilter("", LogLevel.Debug);
         
-        // Configure services
+        // Configure Repositories
         builder.Services
             .AddLogging()
             .AddHost()

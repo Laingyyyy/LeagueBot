@@ -10,14 +10,14 @@ namespace Persistance.Services.Extensions;
 public static class PersistanceServiceCollectionExtension
 {
     /// <summary>
-    /// Configures and registers persistence-related services into the specified <see cref="IServiceCollection"/>.
+    /// Configures and registers persistence-related Repositories into the specified <see cref="IServiceCollection"/>.
     /// </summary>
-    /// <param name="services">The service collection to which the persistence services will be added.</param>
-    /// <returns>The updated <see cref="IServiceCollection"/> instance with persistence services added.</returns>
+    /// <param name="services">The service collection to which the persistence Repositories will be added.</param>
+    /// <returns>The updated <see cref="IServiceCollection"/> instance with persistence Repositories added.</returns>
     public static IServiceCollection AddPersistance(this IServiceCollection services)
     {
-        // Add persistence services here
-        // adding database services
+        // Add persistence Repositories here
+        // adding database Repositories
         services.AddDbContextPool<LeagueDbContext>(opt =>
         {
             opt.UseNpgsql(
@@ -27,7 +27,7 @@ public static class PersistanceServiceCollectionExtension
                 .AddInterceptors(new SaveChangesInterceptor());
         });
 
-        // adding localization services
+        // adding localization Repositories
         services.AddLocalization(opt =>
             opt.ResourcesPath = @"Language\Resources\");
 

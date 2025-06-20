@@ -5,13 +5,13 @@ namespace Logic.Services;
 public static class LogicServiceCollectionExtension
 {
     /// <summary>
-    /// Adds logic services to the service collection.
+    /// Adds logic Repositories to the service collection.
     /// </summary>
-    /// <param name="services">The IServiceCollection to which the logic services will be added.</param>
-    /// <returns>The updated IServiceCollection with added logic services.</returns>
+    /// <param name="services">The IServiceCollection to which the logic Repositories will be added.</param>
+    /// <returns>The updated IServiceCollection with added logic Repositories.</returns>
     public static IServiceCollection AddLogic(this IServiceCollection services)
     {
-        // Add Logic services here
+        // Add Logic Repositories here
         
         return services;
     }
