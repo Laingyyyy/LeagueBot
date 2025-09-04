@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistance.Database;
@@ -11,9 +12,11 @@ using Persistance.Database;
 namespace Persistance.Database.DbMigrations
 {
     [DbContext(typeof(DiscordContext))]
-    partial class DiscordContextModelSnapshot : ModelSnapshot
+    [Migration("20250904195646_AddGuildTable")]
+    partial class AddGuildTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
