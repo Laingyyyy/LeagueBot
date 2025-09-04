@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,8 +11,8 @@ public class DbServices
     {
         var tempBuilder = new ConfigurationBuilder()
             .Build();
-        
-        service.AddDbContextPool<DiscordContext>(opt =>
+
+        service.AddDbContext<DiscordContext>(opt =>
         {
             opt.UseNpgsql(tempBuilder.GetConnectionString("DefaultConnection"));
         });
