@@ -17,17 +17,40 @@ public class DiscordContext : DbContext
 
     public override int SaveChanges()
     {
-        UpdateTimestamps().GetAwaiter();
+        UpdateTimestamps();
         return SaveChanges(true);
     }
     
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        await UpdateTimestamps();
+        await UpdateTimestampsAsync(cancellationToken);
         return await base.SaveChangesAsync(cancellationToken);
     }
-    
-    private async Task UpdateTimestamps()
+
+    private async Task UpdateTimestampsAsync(CancellationToken cts)
+    {
+        var entries = ChangeTracker.Entries()
+            .Where(e => e.Entity is IBaseModel && 
+                        (e.State == EntityState.Added || e.State == EntityState.Modified));
+
+        var now = DateTime.UtcNow;
+
+        await Parallel.ForEachAsync(entries, cts, (entry, token) =>
+        {
+            if (entry.Entity is not IBaseModel model) return ValueTask.CompletedTask;
+
+            if (entry.State == EntityState.Added)
+            {
+                model.CreatedAt = now;
+                return ValueTask.CompletedTask;
+            }
+
+            model.UpdatedAt = now;
+            return ValueTask.CompletedTask;
+        });
+    }
+
+    private void UpdateTimestamps()
     {
         var entries = ChangeTracker.Entries()
             .Where(e => e.Entity is IBaseModel && 
@@ -47,7 +70,5 @@ public class DiscordContext : DbContext
 
             model.UpdatedAt = now;
         }
-
-        await Task.CompletedTask;
     }
 }
