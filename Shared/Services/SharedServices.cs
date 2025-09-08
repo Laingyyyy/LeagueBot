@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Shared.Database.Interfaces;
 
 namespace Shared.Services;
 

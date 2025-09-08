@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistance.Database.Repositories;
+using Shared.Database.Interfaces;
 
 namespace Persistance.Database.Services;
 
@@ -15,5 +17,8 @@ public class DbServices
         {
             opt.UseNpgsql(tempBuilder.GetConnectionString("DefaultConnection"));
         });
+        
+        // register repositories
+        service.AddScoped<IGuildRepository, GuildRepository>();
     }
 }
