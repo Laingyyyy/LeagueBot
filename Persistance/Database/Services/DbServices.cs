@@ -19,6 +19,10 @@ public class DbServices
         });
         
         // register repositories
-        service.AddScoped<IGuildRepository, GuildRepository>();
+        service.Scan(scan => scan
+            .FromAssemblyOf<GuildRepository>()
+            .AddClasses(c => c.Where(t => t.Name.EndsWith("Repository")))
+            .AsImplementedInterfaces()
+            .WithScopedLifetime());
     }
 }
