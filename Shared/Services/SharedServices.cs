@@ -6,6 +6,5 @@ public class SharedServices
 {
     public static void ConfigureServices(IServiceCollection services)
     {
-        
     }
 }

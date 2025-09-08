@@ -1,4 +1,4 @@
-﻿namespace Shared.DatabaseModels.Discord;
+﻿namespace Shared.Database.Models.Discord;
 
 public class Guild : IBaseModel
 {

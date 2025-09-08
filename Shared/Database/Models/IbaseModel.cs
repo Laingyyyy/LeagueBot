@@ -1,4 +1,4 @@
-﻿namespace Shared.DatabaseModels;
+﻿namespace Shared.Database.Models;
 
 public interface IBaseModel
 {

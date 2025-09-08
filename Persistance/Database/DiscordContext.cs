@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Shared.DatabaseModels;
-using Shared.DatabaseModels.Discord;
+using Shared.Database.Models;
+using Shared.Database.Models.Discord;
+using Shared.Database.Models;
 
 namespace Persistance.Database;
 
@@ -47,7 +48,7 @@ public class DiscordContext : DbContext
 
             model.UpdatedAt = now;
             return ValueTask.CompletedTask;
-        });
+        }).ConfigureAwait(false);
     }
 
     private void UpdateTimestamps()
